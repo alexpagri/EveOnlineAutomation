@@ -1,0 +1,306 @@
+18-15 		Neocom Menu
+948-174		Undock
+88-59		System Info On/Off
+107-59		Route On/Off
+127-60		Agent Mission On/Off
+
+866-499		Agent #2 Station
+>888-508	Agent #2 Show Info
+>887-526	Agent #2 Start Conversation
+>>726-116	Agent #2 Mission Info
+>>750-141	Agent #2 Mission Info Copy All
+>652-601	Agent #2 Accept Mission ( Also Request , Also Complete )
+>700-600	Agent #2 Decline Mission
+>805-601	Agent #2 Close Window (after accept only!)
+
+527-367		Ship
+>569-410	Repair
+>>627-292	Repair Info
+>>703-247	Close
+>556-756	Repair All
+>>488-481	Confirm
+
+
+18-131		Inventory
+>115-142	Active Ship Cargo
+>>147-182	Repair Ship
+>741-208	Active Ship Cargo Menu ( Row #1 )
+>741-297	Active Ship Cargo Menu ( Row #2 )
+>741-421	Active Ship Cargo Menu ( Row #3 )
+>741-524	Active Ship Cargo Menu ( Row #4 )
+>741-624	Active Ship Cargo Menu ( Row #5 )
+>248-165	Col. 1
+>325-165	Col. 2
+>402-165	Col. 3
+>475-165	Col. 4
+>553-165	Col. 5
+>629-165	Col. 6
+>704-165	Col. 7
+>>776-353	Stack All ( Row #2 )
+>>780-323	Invert Sel. ( Row #2 )
+>119-463	Item Hangar
+
+>>>908-14	Close Item Info
+
+Procedure : Take items except crystalz :> get item info & copy description from ROW #2 Menu & Clean Clipboard & Copy All. ? Clipboard Changed > 
+	    Get Item Is Crystal? >  YES:Goto Next , NO:Transfer Hangar UNTIL: CLIPBOARD NO CHANGE.
+
+Ex:Taken:(245-208 > 277-218) 
+
+
++32+10		First Menu!
+
+Space ::
+
+111-163		Mission Menu ( Space )
+>138-280	Set Destination ( Get Info From MIssion First ) Also Warp Encounter Deadspace ( Space )
+>85-137		Dot Traveller ( Station Docker ) ( Space )
+>143-109	Name Traveller ( Ending Copier ) "No Destination" ( Space )
+>121-220	GoHome SetDestination
+
+915-177		Hunt*
+955-179		wreck*
+876-176		WarpTo*
+824-179		Mining*
+805-220		#1
+806-238		#2
+805-258		#3
+808-276		#4
+803-297		#5
+806-315		#6
+802-333		#7
+799-352		#8
+807-371		#9
+804-391		#10
+803-411		#11
+797-431		#12
+>770-94		Approach
+>817-51		Info + Requires First Menu Copy !
+>>821-95	(accel gates) Activate!@
+
+841-504		Drones
+>877-546	Return Drones
+
+821-480
+
+768-101		Approach
+
+523-650		Loot All
+
+918-232		Close Space Inventory
+
+838-103		Orbit 30km
+
+821-105		Open Cargo ( Also Activate Gate :) )
+
+90-163		Objective Check
+
+175-162		Objective Info
+
+634-625
+991-624
+634-712
+
+658-668
+1017-668
+
+697-62
+
+906-106		Lock Target Active
+
+769-200		Icon Sort
+842-202		Distance Sort
+956-200		Type Sort
+
+466-702		Stop Ship
+
+
+Exit Codes:
+1: Error Get Sec Info
+2: 2 Low Sec
+
+You need <a href=showinfo:19398>Confiscated Viral Agent</a> in your cargohold    (Cargo Container)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Obj:
+
+You need to warp to the mission location
+
+Read the mission journal for details
+
+You need to activate the Acceleration Gate
+
+You need to destroy all enemies in the vicinity
+
+
+You need to destroy <a href=showinfo:19504//9001140131000008287>Pirate Headquarters</a> and all the guards
+
+Mission Complete<br>You can return to <a href=showinfo:1383//3019389>Sotrentaira Isara</a> for more work
+
+
+Popup:
+
+The Right Hand Of Zazzmatazz
+
+KaeOn!:
+
+Rogue Drone Harassment
+
+
+Ez:
+
+The Score
+
+Silence The Informant
+
+No:
+
+Intercept The Saboteurs
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+################################################################################OCR#################################################################
+
+Ship Cargo #$canner
+
+
+Inventory IsOpen > 42,94 . 94,108
+Inventory itemrow 1>7 > 204,233 . 737,247
+nextrow #2 > 339 > diff = 106
+
+Color Item Exist Non Selected 50,39,21
+51,41,22
+52,42,23
+Color Location #1 #1 214,245
+
+#chk item hangar right position!
+77,448
+153,465
+
+Mission Agent Buttons > 508,593 . 905,615
+Mission Agent Window IsOpen > 84,46 . 188,60
+
+371,702 . 398,728
+771,1 . 854,19
+
+121,80 . 166,98
+
+
+
+
+
+//////MINING
+
+set counter to 0> also file this down!
+globalvar currentBelt=1,globalvar Modules[3]{0,1,2}=0,globalvar CyDu(Cycle Duration)=162+3,globalvar isFirst=1,globalvar maxBelt=9(just for init.).
+globalvar crsa=0.
+
+Modules[0,1]=1.
+
+LOOP
+
+globalvar noaddcounter=0,globalvar isRestarting=0.
+
+station> counter is (0) Veldspar
+if(currentBelt is +1 than maxBelt)EXIT/
+repair/
+check if 5 drones and if not then add/[added check drones to unload cargo :D]
+check globalvar changecrystal(crsa==1?)>if over 100% damage>NO MORE CRYSTALS!> replace both crystals!/
+
+	Undock/
+	(if isFirst==1)Get Belts to vector(just count?)(count to maxBelt)/
+	
+	WarpBelt(currentBelt)/PLEASE ADJUST CAMERA WHILE WARPING!!!
+	
+	@@(NO CODE)pick all with globalvar currentBelt/
+	
+Launch Drones/
+Check Drones/>FAIL?>PANIC()
+
+@@Check Mining Crystal(BOTH CRYSTALS HAVE TO FAIL!!!)/>FAIL?>globalvar noaddcounter=1>globalvar isRestarting=1(SKIP ALL TILL Dock/)
+@@#Chek Mining Crystal>>Vector the Available modules in Modules[]
+
+
+Belt>switch wreck tab/
+sort asteroids by Range/
+count available modules to avaM/
+
+(pr4)sol:update Modules[X] and avaM and check if avaM==0 then isRestarting=1 and crsa=1.
+
+@@MINE()//ONLY 1 ASTEROID FOR NOW!!!
+@@pr1 and pr2 result from missing non-ovw targets!
+@@>>pr1>>asteroid mine ends>>Check continu.Non-Overw targets w show info.>no info?>stop ship.>new_target(this module)(see pr2)
+@@>>pr2>>is jammed target>>>>Check continu....>no info?>stop ship.>new_target(this module)(while check)
+@@>>pr3>>cargo full(over 27k)(after cycle check)
+@@>>pr4>>Crystal ended(after cycle check)
+@@>>pr5>>no more ast(globalvar)//CURRENT SETTING CHECKS ONLY #First for ALL CODE!!!, Still Enough :))
+
+(_HERE)if(!target-ed)ChkForAsteroids(#First)(actually pr5)break;
+
+WHILEX(isRestarting==0)
+
+(MOVED)if(!target-ed)ChkForAsteroids(#First)(actually pr5)break;
+if...
+while(!target-ed)Lock first target(14km)
+
+if(target-ed){engage all avaM Modules[X]=1
+
+while(!target-ed)Lock first target(14km)}
+
+WHILE(testfor pr2)(DURATION_FOR CyDu)//PLEASE MAKE DURATION ALG HERE!
+
+(pr2)sol://NO LONGER NEED TO CHECK!//JUST TIME THIS ALG PRECISELY :D
+
+END_WHILE
+
+(pr4)sol:update Modules[X] and avaM and check if avaM==0 then isRestarting=1 and crsa=1.
+(pr3)sol:isRestarting=1.
+(pr5)sol:currentBelt+1,isRestarting=1.
+
+END_WHILEX
+
+
+
+Recover Drones/[isRestarting point]
+Dock/
+
+
+
+Unload Cargo ORE and CARGO + check drones :D/
+globalvar isFirst=0/
+ENDLOOP> Add Vel Counter +1
+
+PANIC()
+
+(Try)Recover Drones/
+Dock/
+EXIT/
+
+END_PANIC()
+
+478000
+879000
+1310000
